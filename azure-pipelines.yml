@@ -52,6 +52,6 @@ stages:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
               bucketName: '$(BUCKET_NAME)'
-              sourceFolder: '$(System.ArtifactsDirectory)/lamda'
+              sourceFolder: '$(System.ArtifactsDirectory)/lambda'
               globExpressions: '**'
               createBucket: true
