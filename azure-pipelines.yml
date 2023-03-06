@@ -25,7 +25,7 @@ stages:
           pip install -t ./ -r requirements.txt
       
       - script: |
-          zip -r $(Build.ArtifactStagingDirectory)/lambda.zip . -x *.txt *.git *.yml @
+          zip -r $(Build.ArtifactStagingDirectory)/lambda.zip . -x *.txt '*.git*' *.yml @
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
