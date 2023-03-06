@@ -40,8 +40,12 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - download: current
-            artifact: lambda
+          - task: DownloadBuildArtifacts@1
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'lambda'
+              downloadPath: '$(System.ArtifactsDirectory)'
           
           - task: S3Upload@1
             inputs:
