@@ -42,3 +42,12 @@ stages:
         steps:
           - download: current
             artifact: lambda.zip
+          
+          - task: S3Upload@1
+            inputs:
+              awsCredentials: 'aws'
+              regionName: '$(REGION)'
+              bucketName: '$(BUCKET_NAME)'
+              sourceFolder: 'lambda.zip'
+              globExpressions: '**'
+              createBucket: true
