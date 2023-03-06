@@ -41,7 +41,7 @@ stages:
           vmImage: ubuntu-latest
         steps:
           - download: current
-            artifact: lambda.zip
+            artifact: lambda
           
           - task: S3Upload@1
             inputs:
