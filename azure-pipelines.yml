@@ -31,5 +31,14 @@ stages:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'lambda.zip'
           publishLocation: 'Container'
-
-  
+          
+  - stage: Deployment
+    displayName: Deploy the project
+    jobs:
+      - job: Deployment
+        displayName: Deploy job
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - download: current
+            artifact: lambda.zip
