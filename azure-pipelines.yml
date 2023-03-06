@@ -29,7 +29,7 @@ stages:
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'lambda.zip'
+          ArtifactName: 'lambda'
           publishLocation: 'Container'
           
   - stage: Deployment
@@ -48,6 +48,6 @@ stages:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
               bucketName: '$(BUCKET_NAME)'
-              sourceFolder: '$(System.ArtifactsDirectory)/lambda.zip'
+              sourceFolder: 'lambda/lambda.zip'
               globExpressions: '**'
               createBucket: true
