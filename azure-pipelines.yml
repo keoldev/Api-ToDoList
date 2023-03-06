@@ -48,6 +48,6 @@ stages:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
               bucketName: '$(BUCKET_NAME)'
-              sourceFolder: 'lambda/lambda.zip'
+              sourceFolder: 'lambda.zip'
               globExpressions: '**'
               createBucket: true
