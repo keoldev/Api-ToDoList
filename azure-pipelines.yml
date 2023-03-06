@@ -49,4 +49,5 @@ stages:
               regionName: '$(REGION)'
               bucketName: '$(BUCKET_NAME)'
               sourceFolder: 'lambda'
+              globExpressions: '**'
               createBucket: true
