@@ -48,6 +48,6 @@ stages:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
               bucketName: '$(BUCKET_NAME)'
-              sourceFolder: 'lambda.zip'
+              sourceFolder: '$(System.ArtifactsDirectory)lambda.zip'
               globExpressions: '**'
               createBucket: true
