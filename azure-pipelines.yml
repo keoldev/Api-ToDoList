@@ -69,5 +69,6 @@ stages:
               functionName: 'to-do-list-lambda'
               codeLocation: 's3object'
               s3Bucket: '$(BUCKET_NAME)'
+              s3ObjectKey: 'lambda.zip'
               
           
