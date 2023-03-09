@@ -4,7 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - azure-pipelines.yml
+
 
 stages:
   - stage: Build
@@ -46,12 +52,13 @@ stages:
               downloadType: 'single'
               artifactName: 'lambda'
               downloadPath: '$(System.ArtifactsDirectory)'
-          
-          - task: S3Upload@1
+              
+          - task: LambdaDeployFunction@1
             inputs:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
-              bucketName: '$(BUCKET_NAME)'
-              sourceFolder: '$(System.ArtifactsDirectory)/lambda'
-              globExpressions: '**'
-              createBucket: true
+              deploymentMode: 'codeonly'
+              functionName: 'toDoList-lambda'
+              codeLocation: 'localfile'
+              localZipFile: '$(System.ArtifactsDirectory)/lambda'
+              logResponse: true
