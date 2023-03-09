@@ -26,7 +26,8 @@ headers = [
 ]
 
 origins = [
-    "*"
+    "localhost:5500",
+    "https://d3uew975aoqbd9.cloudfront.net"
 ]
 app.add_middleware(
     CORSMiddleware,
