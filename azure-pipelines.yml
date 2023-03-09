@@ -59,4 +59,4 @@ stages:
               regionName: '$(REGION)'
               awsCommand: 'lambda'
               awsSubCommand: 'update-function-code'
-              awsArguments: '--function-name toDoList-lambda --zip-file fileb://$(System.ArtifactsDirectory)/lambda/lambda.zip'
+              awsArguments: '--function-name toDoList-lambda --zip-file fileb://$(System.ArtifactsDirectory)/lambda/lambda.zip'
