@@ -53,12 +53,10 @@ stages:
               artifactName: 'lambda'
               downloadPath: '$(System.ArtifactsDirectory)'
               
-          - task: LambdaDeployFunction@1
+          - task: AWSCLI@1
             inputs:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
-              deploymentMode: 'codeonly'
-              functionName: 'toDoList-lambda'
-              codeLocation: 'localfile'
-              localZipFile: '$(System.ArtifactsDirectory)/lambda'
-              logResponse: true
+              awsCommand: 'lambda'
+              awsSubCommand: 'update-function-code'
+              awsArguments: '--function-name toDoList-lambda --zip-file fileb://$(System.ArtifactsDirectory)/lambda/lambda.zip'
