@@ -5,14 +5,14 @@ from decouple import config
 db_client = boto3.client('dynamodb')
 
 
-def insert_task(user_id: str, task: str, task_id: str = str(uuid.uuid4()), status: str = 'incomplete'):
+def insert_task(user_id: str, task: str):
     db_client.put_item(
         TableName=config('TABLE_NAME'),
         Item={
             "user_id": {"S": user_id},
-            "task_id": {"S": task_id},
+            "task_id": {"S": str(uuid.uuid4())},
             "task": {"S": task},
-            "status": {"S": status}
+            "status": {"S": 'incomplete'}
         }
     )
 
