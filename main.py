@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Body, Request
 from db import insert_task, get_tasks, update_status, delete_task
 from models import CreateTaskModel, Status
-from uuid import uuid4
 from mangum import Mangum
 import jwt
 from starlette.middleware.cors import CORSMiddleware

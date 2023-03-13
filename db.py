@@ -1,12 +1,13 @@
 import boto3
 import uuid
+from decouple import config
 
 db_client = boto3.client('dynamodb')
 
 
 def insert_task(user_id: str, task: str, task_id: str = str(uuid.uuid4()), status: str = 'incomplete'):
     db_client.put_item(
-        TableName='users-tasks',
+        TableName=config('TABLE_NAME'),
         Item={
             "user_id": {"S": user_id},
             "task_id": {"S": task_id},
@@ -18,7 +19,7 @@ def insert_task(user_id: str, task: str, task_id: str = str(uuid.uuid4()), statu
 
 def get_tasks(user_id: str):
     response = db_client.query(
-        TableName='users-tasks',
+        TableName=config('TABLE_NAME'),
         KeyConditionExpression='user_id= :user_id',
         ExpressionAttributeValues={
             ":user_id": {"S": user_id}
@@ -28,7 +29,7 @@ def get_tasks(user_id: str):
 
 def update_status(user_id: str, task_id: str, status: str ):
     response=db_client.update_item(
-        TableName='users-tasks',
+        TableName=config('TABLE_NAME'),
         Key={
             "user_id": {"S": user_id} ,
             "task_id": {"S": task_id}
@@ -44,7 +45,7 @@ def update_status(user_id: str, task_id: str, status: str ):
 
 def delete_task(user_id: str, task_id: str):
     response=db_client.delete_item(
-        TableName='users-tasks',
+        TableName=config('TABLE_NAME'),
         Key={
             "user_id": {"S": user_id} ,
             "task_id": {"S": task_id}
