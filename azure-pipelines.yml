@@ -65,11 +65,8 @@ stages:
             inputs:
               awsCredentials: 'aws'
               regionName: '$(REGION)'
-              deploymentMode: 'codeandconfiguration'
+              deploymentMode: 'codeonly'
               functionName: 'to-do-list-lambda'
-              functionHandler: 'main.handler'
-              runtime: 'python3.9'
               codeLocation: 's3object'
               s3Bucket: '$(BUCKET_NAME)'
               s3ObjectKey: 'lambda.zip'
-              roleARN: 'lambda-role'
