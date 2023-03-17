@@ -43,8 +43,11 @@ def decode(token: str):
 @app.post('/')
 def create_task(request: Request, task_data: CreateTaskModel = Body(...)):
     token = request.headers.get("Authorization")
-    insert_task(user_id=decode(token)["sub"], task=task_data.task)
-    return {"message": "task created successfully"}
+    task_id = insert_task(user_id=decode(token)["sub"], task=task_data.task)
+    return {
+        "message": "task created successfully",
+        "task_id": task_id
+        }
 
 
 @app.get('/')
