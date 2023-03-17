@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Body, Request
 from db import insert_task, get_tasks, update_status, delete_task
-from models import CreateTaskModel, Status
+from models import CreateTaskModel, Status, DeleteTaskModel
 from mangum import Mangum
 import jwt
 from starlette.middleware.cors import CORSMiddleware
@@ -70,7 +70,7 @@ def update_task(request: Request, task_id: str, status: Status):
 
 
 @app.delete('/')
-def remove_task(request: Request, task_id: str):
+def remove_task(request: Request, task_data: DeleteTaskModel):
     token = request.headers.get("Authorization")
-    delete_task(task_id, user_id=decode(token)["sub"])
+    delete_task(task_data.task_id, user_id=decode(token)["sub"])
     return {"message": "task deleted successfully!!!"}

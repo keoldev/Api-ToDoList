@@ -8,4 +8,7 @@ class Status(str, Enum):
 class CreateTaskModel(BaseModel):
     task: str = Field(..., min_length=1, max_length=25)
 
+class DeleteTaskModel(BaseModel):
+    task_id: str = Field(...)
+
 
